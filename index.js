@@ -1,12 +1,19 @@
 import express, { request } from "express";
 import {MongoClient} from 'mongodb';
 import { ObjectId } from "mongodb";
+import cors from "cors";
+
 const app = express();
-app.use(express.json());
+
+
 const url="mongodb+srv://SRIHARIKISHOREK:Kishore2003@cluster0.3nhci3y.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 const client = new MongoClient(url);
 await client.connect();
-console.log("MongoDB connected successfully")
+console.log("MongoDB connected successfully");
+
+app.use(cors());
+app.use(express.json());
+
 app.get("/",function(req,res){
     res.send("Hello Everyone")
 });
